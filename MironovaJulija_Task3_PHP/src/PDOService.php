@@ -89,5 +89,19 @@ class PDOService implements IServiceDB
 		return $films;//Возврат массива $films
 	}
 
+	public function getAllCategories(){	
+			$categories=array();//Массив $categories
+			if ($this->connect()) {//Если подключение к базе данных пройдёт успешно
+				if ($result = $this->connectDB->query('SELECT * FROM category')) {//Выполняется запрос к базе данных,где выбирается всё из таблицы category из базы данных
+					$rows = $result->fetchAll(PDO::FETCH_ASSOC);//В $rows возвратится массив, содержащий данные и текстовые индексы
+					foreach($rows as $row){
+						$categories[]=new Category($row['category_id'], $row['name']);
+					 } 
+				}	
+			}
+			$this->connectDB=null;//Закрытие соединения с базой данных
+			return $categories;//Возврат массива $films
+		}
+
 }
 

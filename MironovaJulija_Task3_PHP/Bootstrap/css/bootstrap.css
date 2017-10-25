@@ -62,6 +62,35 @@
   }
 }
 
+
+.header{
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  background: #17a2b8;  
+  color: #fff;  
+  text-align: center;
+padding: 10px;
+}
+
+.footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1030;
+  background: #17a2b8;  
+  color: #fff;  
+  text-align: center;
+padding: 10px;
+}
+
+.bg{
+  background-image: url(../../Image/1.png);
+   padding-top: 100px;
+}
 html {
   box-sizing: border-box;
   font-family: sans-serif;
