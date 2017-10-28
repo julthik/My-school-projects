@@ -17,5 +17,13 @@ class FilmInfo extends Film
         $this->categories=$categories;
         $this->language=$language;
     }
+
+    //Проверка, есть ли данная категория
+    public function hasCategory($id) {
+        foreach($this->categories as $cat) {
+          if($cat->getId() == $id) return true;
+        }
+        return false;
+      }
 }
 

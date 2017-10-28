@@ -29,14 +29,14 @@ require_once "autoloader.php";//Благодаря содержимому autolo
         <script src="Bootstrap/js/bootstrap.min.js "></script>
         <script src="Bootstrap/js/bootstrap.js "></script>
 
-        <title>Practice 2. Courses</title>
+        <title>Practice 3. Movies</title>
     </head>
     <body class="bg">
         <header>
             <div class="container">
                 <div class="row">
                     <div class="col-md-12" >
-                        <div class="header"><h2>Сourses</h2></div>
+                        <div class="header"><h2><a href="Index.php">Movies</a></h2></div>
                     </div>
                 </div>
             </div>
@@ -46,42 +46,31 @@ require_once "autoloader.php";//Благодаря содержимому autolo
                 <div class="row">
                     <div class="col-md-12 offset-md-0">
 
-
-
                         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                            <!--<a class="navbar-brand" href="#">Home</a>-->
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
-                            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                            <div class="category" class="collapse navbar-collapse" id="navbarNavDropdown">
                                 <ul class="navbar-nav">
-
-
-
 
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Category
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-
                                             <?php
                                             $db=new PDOService();
                                             foreach ($db->getAllCategories() as $category) {
                                             ?>
-
-                                            <a class="dropdown-item" href="Index.php" tar> <?php echo $category->name ?></a>
-
+                                            <a class="dropdown-item" href="Index.php?send=<?php echo $category->getId(); ?>" name="send"> <?php echo $category->name ?></a>
                                             <?php
                                             }
                                             ?>
                                         </div>
                                     </li>
 
-
-
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Actors</a>
+                                        <a class="nav-link" href="IndexActors.php">Actors</a>
                                     </li>
 
                                 </ul>
@@ -89,7 +78,33 @@ require_once "autoloader.php";//Благодаря содержимому autolo
                         </nav>
 
 
-                        
+                        <?php 
+                        $id = $_REQUEST['send'];
+                        if(empty($id)){
+                        ?>
+                            <H2 align="center"><?php echo "To see a list of movies, select the category or actor that interests you";?></H2><?php 
+                        }else{
+                            $db=new PDOService();
+                            foreach ($db->getAllFilmsInfo() as $film) {
+                                if ($film->hasCategory($id)) {
+                                    echo "<p><b>".$film->id." ".$film->title.", ".$film->releaseYear."</b><br />".$film->description."<br /><br /></p>";
+                                }
+                            }
+                        }
+
+                        /*
+                        $db=new PDOService();
+                        foreach ($db->getAllFilmsInfo() as $film) {
+                        if ($film->hasCategory(1)) {
+                        echo $film->id." ".$film->title."<br />";
+                        }
+                        }*/
+
+
+                        //}else{
+                        //    echo "Currently there are no movies in this category";
+                        //}
+                        ?>
 
                     </div>
                 </div>

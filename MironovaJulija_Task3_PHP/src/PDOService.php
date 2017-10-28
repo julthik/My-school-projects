@@ -88,7 +88,8 @@ class PDOService implements IServiceDB
 		}
 		return $films;//Возврат массива $films
 	}
-
+	
+	//-----
 	public function getAllCategories(){	
 			$categories=array();//Массив $categories
 			if ($this->connect()) {//Если подключение к базе данных пройдёт успешно
@@ -100,8 +101,7 @@ class PDOService implements IServiceDB
 				}	
 			}
 			$this->connectDB=null;//Закрытие соединения с базой данных
-			return $categories;//Возврат массива $films
+			return $categories;//Возврат массива $categories
 		}
-
 }
 

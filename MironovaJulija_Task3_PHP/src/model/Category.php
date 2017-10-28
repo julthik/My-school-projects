@@ -13,4 +13,8 @@ class Category
          $this->id=$id;
          $this->name=$name;
      }
+
+     public function getId() {
+        return $this->id;
+    }
 }

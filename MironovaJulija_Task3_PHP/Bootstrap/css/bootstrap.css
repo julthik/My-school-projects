@@ -72,7 +72,7 @@
   background: #17a2b8;  
   color: #fff;  
   text-align: center;
-padding: 10px;
+padding: 5px;
 }
 
 .footer {
@@ -84,7 +84,8 @@ padding: 10px;
   background: #17a2b8;  
   color: #fff;  
   text-align: center;
-padding: 10px;
+
+padding: 5px;
 }
 
 .bg{
@@ -217,16 +218,32 @@ sup {
 }
 
 a {
-  color: #007bff;
+  color: #ffffff;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
 }
 
+a:link{
+  color: #ffffff;
+}
+
 a:hover {
-  color: #0056b3;
+  color: #000000;
   text-decoration: underline;
 }
+
+a:visited{
+  color: rgb(255, 255, 255);
+}
+
+.category a:link {
+  color:#000000;
+ }
+
+ .category a:visited {
+  color:#000000;
+ }
 
 a:not([href]):not([tabindex]) {
   color: inherit;
