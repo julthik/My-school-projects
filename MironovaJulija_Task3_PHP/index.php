@@ -79,31 +79,55 @@ require_once "autoloader.php";//Благодаря содержимому autolo
 
 
                         <?php 
-                        $id = $_REQUEST['send'];
+                       /* $id = $_REQUEST['send'];
                         if(empty($id)){
                         ?>
                             <H2 align="center"><?php echo "To see a list of movies, select the category or actor that interests you";?></H2><?php 
                         }else{
                             $db=new PDOService();
                             foreach ($db->getAllFilmsInfo() as $film) {
+                        
                                 if ($film->hasCategory($id)) {
                                     echo "<p><b>".$film->id." ".$film->title.", ".$film->releaseYear."</b><br />".$film->description."<br /><br /></p>";
-                                }
-                            }
                         }
+                        }
+                    }*/
 
-                        /*
+
+                    $id = $_REQUEST['send'];
+                    if(empty($id)){
+                    ?>
+                        <H2 align="center"><?php echo "To see a list of movies, select the category or actor that interests you";?></H2><?php 
+                    }else{
                         $db=new PDOService();
+                        $control=0;
                         foreach ($db->getAllFilmsInfo() as $film) {
-                        if ($film->hasCategory(1)) {
-                        echo $film->id." ".$film->title."<br />";
-                        }
-                        }*/
-
-
-                        //}else{
-                        //    echo "Currently there are no movies in this category";
-                        //}
+                            if ($film->hasCategory($id)) {
+                                    echo "<p><H4 style='color:#17a2b8'><b>".$film->title.", ".$film->releaseYear."</b></H4><br />".$film->description."<br /></p>";
+                                    echo "<p><b>Categories</b></p>";
+                                    foreach($film->categories as $c){
+                                        echo "<H5>".$c->name." </H5>";
+                                    } 
+                                    echo "<p><b><br />Actors</b></p>";
+                                    $counter=1;
+                                    foreach($film->actors as $f){
+                                        $result = count($film->actors);
+                                            if($result>$counter){
+                                                $counter=$counter+1;
+                                                echo "<H5>".$f->firstname." ".$f->lastname.", </H5>";
+                                            }else{
+                                                echo "<H5>".$f->firstname." ".$f->lastname."</H5>";
+                                            } 
+                                    } 
+                                    $control=$control+1;
+                                    echo "<br /><br />";
+                            }
+                        } 
+                        if($control==0)  {
+                            echo "<H2 align='center'>So far there are no movies. Choose another category.</H2>";
+                        } 
+                        $control=0;
+                }
                         ?>
 
                     </div>
