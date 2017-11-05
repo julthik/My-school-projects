@@ -15,4 +15,9 @@ class Actor
          $this->firstname=$firstname;
          $this->lastname=$lastname;
      }
+
+     //Возвращается id автора
+     public function getId() {
+        return $this->id;
+    }
 }

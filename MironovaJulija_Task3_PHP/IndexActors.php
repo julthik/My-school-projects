@@ -47,6 +47,7 @@ require_once "autoloader.php";//Благодаря содержимому autolo
                 <div class="row">
                     <div class="col-md-12 offset-md-0">
 
+
                         <nav class="navbar navbar-expand-lg navbar-light bg-light">
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
@@ -80,39 +81,34 @@ require_once "autoloader.php";//Благодаря содержимому autolo
 
 
                         <?php 
-                    if(isset($_REQUEST['send'])){
-                        $id = $_REQUEST['send'];
                         $db=new PDOService();
-                        $control=0;
-                        foreach ($db->getAllFilmsInfo() as $film) {
-                            if ($film->hasCategory($id)) {
-                                    echo "<p><H4 style='color:#17a2b8'><b>".$film->title.", ".$film->releaseYear."</b></H4><br />".$film->description."<br /></p>";
-                                    echo "<p><b>Categories</b></p>";
-                                    foreach($film->categories as $c){
-                                        echo "<H5>".$c->name." </H5>";
-                                    } 
-                                    echo "<p><b><br />Actors</b></p>";
-                                    $counter=1;
-                                    foreach($film->actors as $f){
-                                        $result = count($film->actors);
-                                            if($result>$counter){
-                                                $counter=$counter+1;
-                                                echo "<H5>".$f->firstname." ".$f->lastname.", </H5>";
-                                            }else{
-                                                echo "<H5>".$f->firstname." ".$f->lastname."</H5>";
-                                            } 
-                                    } 
-                                    $control=$control+1;
-                                    echo "<br /><br />";
-                            }
-                        } 
-                        if($control==0)  {
-                            echo "<H2 align='center'>So far there are no movies. Choose another category.</H2>";
-                        } 
-                        $control=0;
-                }else{
-                        ?><H2 align="center"><?php echo "To see a list of movies, select the category or actor that interests you";?></H2><?php
-                    }?>
+                        foreach ($db->getAllActors() as $actor) {
+                        $id=$actor->id;?>
+                        <div class="panel-group" id="collapse-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#collapse-group" href="#<?php echo $actor->id; ?>"><?php echo "<H4 style='color:#000000'><b>".$actor->firstname." ".$actor->lastname."</H4>"; ?></a>
+                                    </h4>
+                                </div>
+                                <div id="<?php echo $actor->id; ?>" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <?php
+                                        foreach ($db->getAllFilmsInfo() as $film) {
+                                            foreach($film->actors as $f){
+                                                if($id==$f->id){
+                                                    echo "<H4 style='color:#17a2b8'><b>".$film->title.", ".$film->releaseYear."</b></H4><H5>".$film->description."</H5><br /><br />";
+                                                }
+                                            }
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php }?>
+
+
                     </div>
                 </div>
             </div>

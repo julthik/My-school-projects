@@ -69,16 +69,16 @@ class PDOService implements IServiceDB
 				$rows = $result->fetchAll(PDO::FETCH_ASSOC);//В $rows возвратится массив, содержащий данные и текстовые индексы ('film_id', 'title'...)
                 foreach($rows as $row){
 					$actors=array();//Массив $actors
-					foreach (explode(";",$row['actors']) as $item) {//Строка рабивается разделителем ; на элементы массива
-					   $actor=explode(",",$item);//Значения конвертируются через запятую в массив 
+					foreach (explode(";",$row['actors']) as $item) {//Строка рабивается разделителем ;
+					   $actor=explode(",",$item);//Строка рабивается разделителем , на элементы массива
 					   $actors[]=new Actor($actor[0], $actor[1],$actor[2]);//Создается объект класса Actor со значениями
 					}
 					$categories=array();//Массив $categories
-					foreach (explode(";",$row['categories']) as $item) {//Строка рабивается разделителем ; на элементы массива
-					   $category=explode(",",$item);//Значения конвертируются через запятую в массив 
+					foreach (explode(";",$row['categories']) as $item) {//Строка рабивается разделителем ;
+					   $category=explode(",",$item);//Строка рабивается разделителем , на элементы массива
 					   $categories[]=new Category($category[0], $category[1]);//Создается объект класса Category со значениями
 					}
-					$item=explode(',',$row['language']);//Значения конвертируются через запятую в массив 
+					$item=explode(',',$row['language']);//Строка рабивается разделителем , на элементы массиваы
 					$language=new Language($item[0], $item[1]);//Создается объект класса Language со значениями
 					$films[]=new FilmInfo($row['id'], $row['title'], $row['description'], 
 										$row['year'],  $row=['length'], $actors, $categories, $language);//Создается объект класса FilmInfo со значениями				
@@ -103,5 +103,21 @@ class PDOService implements IServiceDB
 			$this->connectDB=null;//Закрытие соединения с базой данных
 			return $categories;//Возврат массива $categories
 		}
+
+		public function getAllActors(){
+			$actors=array();//Массив $actors
+			if ($this->connect()) {//Если подключение к базе данных пройдёт успешно
+				if ($result = $this->connectDB->query('SELECT actor_id, firstname, lastname FROM actor ORDER BY lastname ASC')) {//Выполняется запрос к базе данных,где выбирается всё из таблицы category из базы данных
+					$rows = $result->fetchAll(PDO::FETCH_ASSOC);//В $rows возвратится массив, содержащий данные и текстовые индексы
+					foreach($rows as $row){
+						$actors[]=new Actor($row['actor_id'], $row['firstname'], $row['lastname']);
+					 } 
+				}	
+			}
+			$this->connectDB=null;//Закрытие соединения с базой данных
+			return $actors;//Возврат массива $actors
+		}
+
+
 }
 

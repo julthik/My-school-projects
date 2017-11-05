@@ -14,6 +14,7 @@ class Category
          $this->name=$name;
      }
 
+      //Возвращается id категории
      public function getId() {
         return $this->id;
     }
