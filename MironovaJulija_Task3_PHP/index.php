@@ -61,6 +61,7 @@ require_once "autoloader.php";//Благодаря содержимому autolo
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                             <?php
                                             $db=new PDOService();
+                                            //$db=new MySQLiService();
                                             foreach ($db->getAllCategories() as $category) {
                                             ?>
                                             <a class="dropdown-item" href="Index.php?send=<?php echo $category->getId(); ?>" name="send"> <?php echo $category->name ?></a>
@@ -82,7 +83,6 @@ require_once "autoloader.php";//Благодаря содержимому autolo
                         <?php 
                     if(isset($_REQUEST['send'])){
                         $id = $_REQUEST['send'];
-                        $db=new PDOService();
                         $control=0;
                         foreach ($db->getAllFilmsInfo() as $film) {
                             if ($film->hasCategory($id)) {

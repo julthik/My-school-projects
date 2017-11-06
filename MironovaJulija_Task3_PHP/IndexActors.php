@@ -62,6 +62,7 @@ require_once "autoloader.php";//Благодаря содержимому autolo
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                             <?php
                                             $db=new PDOService();
+                                            //$db=new MySQLiService();
                                             foreach ($db->getAllCategories() as $category) {
                                             ?>
                                             <a class="dropdown-item" href="Index.php?send=<?php echo $category->getId(); ?>" name="send"> <?php echo $category->name ?></a>
@@ -81,7 +82,6 @@ require_once "autoloader.php";//Благодаря содержимому autolo
 
 
                         <?php 
-                        $db=new PDOService();
                         foreach ($db->getAllActors() as $actor) {
                         $id=$actor->id;?>
                         <div class="panel-group" id="collapse-group">

@@ -86,5 +86,35 @@ class MySQLiService implements IServiceDB
 		return $films;//Возврат массива $films
 	}
 
+		//-----
+		public function getAllCategories(){	
+			$categories=array();//Массив $categories
+			if ($this->connect()) {//Если подключение к базе данных пройдёт успешно
+				if ($result = mysqli_query($this->connectDB, 'SELECT * FROM category')) {//Выполняется запрос к базе данных,где выбирается всё из таблицы category из базы данных
+					while ($row = mysqli_fetch_assoc($result)) {//Извлекается результирующий ряд в виде ассоциативного массива (ключ => значение)
+						$categories[]=new Category($row['category_id'], $row['name']);//Запись в массив объекты класса Category
+					 } 
+					 mysqli_free_result($result);//Очистка памяти от результата запроса
+				}
+				mysqli_close($this->connectDB);//Закрытие соединения с базой данных	
+			}
+			return $categories;//Возврат массива $categories
+		}
+
+
+		public function getAllActors(){	
+			$actors=array();//Массив $actors
+			if ($this->connect()) {//Если подключение к базе данных пройдёт успешно
+				if ($result = mysqli_query($this->connectDB, 'SELECT actor_id, firstname, lastname FROM actor ORDER BY lastname ASC')) {//Выполняется запрос к базе данных,где выбирается всё из таблицы category из базы данных
+					while ($row = mysqli_fetch_assoc($result)) {//Извлекается результирующий ряд в виде ассоциативного массива (ключ => значение)
+						$actors[]=new Actor($row['actor_id'], $row['firstname'], $row['lastname']); //Запись в массив объекты класса Actor
+					 } 
+					 mysqli_free_result($result);//Очистка памяти от результата запроса
+				}
+				mysqli_close($this->connectDB);//Закрытие соединения с базой данных	
+			}
+			return $actors;//Возврат массива $films
+		}
+
 }
 
