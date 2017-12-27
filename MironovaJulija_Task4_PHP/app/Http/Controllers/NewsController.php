@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\News;
-use Illuminate\Http\Request;
+use App\Category;
+use Request;
+use Carbon\Carbon;
 
 class NewsController extends Controller
 {
     public function index()
     {
-        $news = News::all();
+        $news = News::latest('pubDate')->take(10)->get();
         return view('pages.news', compact('news'));
     }
 
@@ -20,6 +22,31 @@ class NewsController extends Controller
             abort(404);
         }
         
-        return view('pages.show', compact('showOneNews'));
+        $category_id = $showOneNews->id_category;
+        $categories = Category::find($category_id);;
+        $category_name = $categories->name;
+        
+        return view('pages.show', compact('showOneNews'),["category_name"=>$category_name]);
+    }
+
+    public function create()
+    {
+        $categories=Category::all();
+
+        foreach($categories as $category){
+            $categories_array[$category->id] = $category->name;
+        }
+
+        return view('pages.create',["categories_array"=>$categories_array]);
+    }
+
+    public function store()
+    {
+        $input=Request::all();
+         $input['pubDate']=Carbon::now();
+
+         News::create($input);
+
+        return redirect('news/');
     }
 }

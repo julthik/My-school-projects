@@ -12,10 +12,10 @@ class NewsTableSeeder extends Seeder
     public function run()
     {
         DB::table('news')->insert([
-            'title'=> 'Sünoptik: on lootust, et jõululaupäeva hommikul on maa valge',
-            'description'=> 'Kauaoodatud jõulud endaga metsikuid lumehangesid kaasa ei too. Parimal juhul võib valget maad täheldada pühapäeva hommikul, teatas riikliku ilmateenistuse sünoptik Helve Meitern',
+            'title'=> 'Estonian city to be named 2024 European Capital of Culture',
+            'description'=> 'For the first time since 2011, one of the 2024 European Capitals of Culture will once again be located in Estonia, and the Ministry of Culture and the Association of Estonian Cities on Wednesday announced a competition to determine which town or city will claim the title',
             'pubDate'=>new DateTime('now'),
-            'link'=>'http://naistekas.delfi.ee/puhad/uudised/sunoptik-on-lootust-et-joululaupaeva-hommikul-on-maa-valge?id=80520190',
+            'link'=>'https://news.err.ee/645659/estonian-city-to-be-named-2024-european-capital-of-culture',
             'id_category'=>1
             ]);
     }

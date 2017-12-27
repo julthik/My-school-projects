@@ -6,7 +6,7 @@
                             <li class="nav-item nav-link"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
                             <li class="nav-item nav-link"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
                         @else 
-                        <li class="nav-item nav-link"><a class="nav-link" href="#"><img src="/images/add.png" width="25" height="25" class="d-inline-block align-top">&nbsp;Add news</a></li>
+                        <li class="nav-item nav-link"><a class="nav-link" href="/news/create"><img src="/images/add.png" width="25" height="25" class="d-inline-block align-top">&nbsp;Add news</a></li>
                             <li class="dropdown nav-item nav-link">
                                 <a href="#"  class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                                     {{ Auth::user()->name }} 

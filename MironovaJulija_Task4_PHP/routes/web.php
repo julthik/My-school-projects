@@ -17,7 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/news/create', 'NewsController@create');
+    Route::post('/news', 'NewsController@store');
+});
 
 Route::get('/news', 'NewsController@index');
 Route::get('/news/{id}', 'NewsController@show');
