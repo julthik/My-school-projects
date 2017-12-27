@@ -17,7 +17,7 @@ class CreateNewsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('description');
-            $table->date('pubDate');
+            $table->timestamp('pubDate');
             $table->string('link');
             //relation
             $table->integer("id_category")->unsigned();
