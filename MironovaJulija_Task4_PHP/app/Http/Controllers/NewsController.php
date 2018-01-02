@@ -7,6 +7,8 @@ use App\Category;
 use Request;
 use Carbon\Carbon;
 
+require_once "LibraryDomController.php";
+
 class NewsController extends Controller
 {
     public function index()
@@ -43,9 +45,21 @@ class NewsController extends Controller
     public function store()
     {
         $input=Request::all();
-         $input['pubDate']=Carbon::now();
+        $input['pubDate']=Carbon::now();
 
-         News::create($input);
+        News::create($input);
+
+
+        $inputXML = Request::all();
+        $news = new LibraryDomController("RSS.xml");
+
+        $title = $inputXML["title"];
+        $description = $inputXML["description"];
+        $pubDate = $inputXML['pubDate']=Carbon::now();
+        $link = $inputXML["link"];
+        $id_category = $inputXML["id_category"];
+
+        $news->addNews($title, $description, $pubDate, $link, $id_category);
 
         return redirect('news/');
     }

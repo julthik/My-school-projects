@@ -25,3 +25,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 Route::get('/news', 'NewsController@index');
 Route::get('/news/{id}', 'NewsController@show');
+
+Route::get('/rss', function () {
+    return redirect('/Rss.xml');
+});
