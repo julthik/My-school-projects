@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Task 5. Courses</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css" />  
+</head>
+<body class="bg">
+        <header>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12" >
+                        <div class="header"><h2>Сourses</h2></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 offset-md-0">
+                        <table border="1" cellspacing="5" cellpadding="5" class="table table-hover" >
+                            <thead>
+                                <tr>
+                                    <td width="100" scope="col"><b>Code</b></td>
+                                    <td width="600" scope="col"><b>Course name</b></td>
+                                    <td width="800" scope="col"><b>Description</b></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td width="100" th:text="${course.getCode()}"></td>
+                                    <td width="600" th:text="${course.getTitle()}"></td>
+                                    <td width="800" th:text="${course.getDescription()}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table border="1" cellspacing="5" cellpadding="5" class="table table-hover" >
+                            <thead>
+                                <tr>
+                                    <td width="300" scope="col"><b>Firstname</b></td>
+                                    <td width="300" scope="col"><b>Lastname</b></td>
+                                    <td width="150" scope="col"><b>Group</b></td>
+                                    <td width="400" scope="col"><b>EMAIL</b></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="student : ${students}">
+                                    <td width="300" th:text="${student.getFirstname()}"></td>
+                                    <td width="300" th:text="${student.getLastname()}"></td>
+                                    <td width="150" th:text="${student.getGroup()}"></td>
+                                    <td width="400" th:text="${student.getEmail()}"></td>
+                                </tr>                                   
+                            </tbody>
+                        </table>
+                        <div>
+                            <a th:href="@{|/|}"><input type="submit" class="btn btn-info" value="Go back" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="container" style='margin-top: 50px;'>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="footer"><h6>© Julija Mironova RDIR51</h6></div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

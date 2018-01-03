@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Task 5. Courses</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css" />  
+</head>
+<body class="bg">
+        <header>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12" >
+                        <div class="header"><h2>Сourses</h2></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 offset-md-0">
+                        <table border="1" cellspacing="5" cellpadding="5" class="table table-hover" >
+                            <thead>
+                                <tr>
+                                    <td width="100" scope="col"><b>Code</b></td>
+                                    <td width="600" scope="col"><b>Course name</b></td>
+                                    <td width="600" scope="col"></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="course : ${courses}">
+                                    <td width="100" th:text="${course.getCode()}"></td>
+                                    <td width="600" th:text="${course.getTitle()}"></td>
+                                    <td width="300" align="center"><a th:href="@{|/course/${course.getId()}|}">More info</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="container" style='margin-top: 50px;'>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="footer"><h6>© Julija Mironova RDIR51</h6></div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

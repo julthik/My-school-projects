@@ -17,6 +17,8 @@ INSERT INTO Courses_Students(course_id, student_id) VALUES (3,3);
 INSERT INTO Courses_Students(course_id, student_id) VALUES (4,5);
 INSERT INTO Courses_Students(course_id, student_id) VALUES (5,5);
 INSERT INTO Courses_Students(course_id, student_id) VALUES (4,6);
+INSERT INTO Courses_Students(course_id, student_id) VALUES (4,1);
+INSERT INTO Courses_Students(course_id, student_id) VALUES (4,2);
 INSERT INTO Courses_Students(course_id, student_id) VALUES (5,6);
 INSERT INTO Courses_Students(course_id, student_id) VALUES (1,1);
 INSERT INTO Courses_Students(course_id, student_id) VALUES (1,2);

@@ -62,6 +62,14 @@ public class Student{
     public void setGroup(String group_name) {
         this.group_name = group_name;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
    
     public Set<Course> getCourses() {
        return courses;
